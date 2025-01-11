@@ -35,7 +35,7 @@ int main(void)
         if (flag2 == 1)
         {
             SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR12);
-            SET_BIT(GPIOC->MODER, GPIO_MODER_MODE12);
+            // SET_BIT(GPIOC->MODER, GPIO_MODER_MODE12);
             if (READ_BIT(GPIOC->IDR, GPIO_IDR_IDR_12) != 0)
             {
                 SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS14);

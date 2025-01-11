@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\dedla\AppData\Local\Temp\cc23Mv9Y.s 			page 1
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccDTTzZV.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -38,14 +38,14 @@ ARM GAS  C:\Users\dedla\AppData\Local\Temp\cc23Mv9Y.s 			page 1
   33              		@ link register save eliminated.
    4:Core/Src/init.c ****     SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOBEN | RCC_AHB1ENR_GPIOCEN | RCC_AHB1ENR_GPIODEN); 
   34              		.loc 1 4 5 view .LVU1
-  35 0000 184A     		ldr	r2, .L2
+  35 0000 164A     		ldr	r2, .L2
   36 0002 136B     		ldr	r3, [r2, #48]
   37 0004 43F00E03 		orr	r3, r3, #14
   38 0008 1363     		str	r3, [r2, #48]
    5:Core/Src/init.c **** 
    6:Core/Src/init.c ****     SET_BIT(GPIOB->MODER, GPIO_MODER_MODE0_0);
   39              		.loc 1 6 5 view .LVU2
-  40 000a 174B     		ldr	r3, .L2+4
+  40 000a 154B     		ldr	r3, .L2+4
   41 000c 1A68     		ldr	r2, [r3]
   42 000e 42F00102 		orr	r2, r2, #1
   43 0012 1A60     		str	r2, [r3]
@@ -58,79 +58,71 @@ ARM GAS  C:\Users\dedla\AppData\Local\Temp\cc23Mv9Y.s 			page 1
   48              		.loc 1 8 5 view .LVU4
   49 001c 1A68     		ldr	r2, [r3]
   50 001e 42F08052 		orr	r2, r2, #268435456
-ARM GAS  C:\Users\dedla\AppData\Local\Temp\cc23Mv9Y.s 			page 2
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccDTTzZV.s 			page 2
 
 
   51 0022 1A60     		str	r2, [r3]
-   9:Core/Src/init.c ****     SET_BIT(GPIOC->MODER, GPIO_MODER_MODE12_0);
-  52              		.loc 1 9 5 view .LVU5
-  53 0024 114A     		ldr	r2, .L2+8
-  54 0026 1168     		ldr	r1, [r2]
-  55 0028 41F08071 		orr	r1, r1, #16777216
-  56 002c 1160     		str	r1, [r2]
-  10:Core/Src/init.c ****     
-  11:Core/Src/init.c **** 
-  12:Core/Src/init.c ****     CLEAR_BIT(GPIOB->OTYPER, GPIO_OTYPER_OT_0 | GPIO_OTYPER_OT_7 | GPIO_OTYPER_OT_14 | GPIO_OTYPER_
+   9:Core/Src/init.c ****     
+  10:Core/Src/init.c **** 
+  11:Core/Src/init.c ****     CLEAR_BIT(GPIOB->OTYPER, GPIO_OTYPER_OT_0 | GPIO_OTYPER_OT_7 | GPIO_OTYPER_OT_14 | GPIO_OTYPER_
+  52              		.loc 1 11 5 view .LVU5
+  53 0024 5A68     		ldr	r2, [r3, #4]
+  54 0026 22F4C142 		bic	r2, r2, #24704
+  55 002a 22F00102 		bic	r2, r2, #1
+  56 002e 5A60     		str	r2, [r3, #4]
+  12:Core/Src/init.c ****     CLEAR_BIT(GPIOC->OTYPER, GPIO_OTYPER_OT_12); 
   57              		.loc 1 12 5 view .LVU6
-  58 002e 5968     		ldr	r1, [r3, #4]
-  59 0030 21F4C141 		bic	r1, r1, #24704
-  60 0034 21F00101 		bic	r1, r1, #1
-  61 0038 5960     		str	r1, [r3, #4]
-  13:Core/Src/init.c ****     CLEAR_BIT(GPIOC->OTYPER, GPIO_OTYPER_OT_12); 
+  58 0030 0C4A     		ldr	r2, .L2+8
+  59 0032 5168     		ldr	r1, [r2, #4]
+  60 0034 21F48051 		bic	r1, r1, #4096
+  61 0038 5160     		str	r1, [r2, #4]
+  13:Core/Src/init.c ****     SET_BIT(GPIOB->OSPEEDR, GPIO_OSPEEDER_OSPEEDR0_0 | GPIO_OSPEEDER_OSPEEDR7_0 | GPIO_OSPEEDER_OSP
   62              		.loc 1 13 5 view .LVU7
-  63 003a 5168     		ldr	r1, [r2, #4]
-  64 003c 21F48051 		bic	r1, r1, #4096
-  65 0040 5160     		str	r1, [r2, #4]
-  14:Core/Src/init.c ****     SET_BIT(GPIOB->OSPEEDR, GPIO_OSPEEDER_OSPEEDR0_0 | GPIO_OSPEEDER_OSPEEDR7_0 | GPIO_OSPEEDER_OSP
-  66              		.loc 1 14 5 view .LVU8
-  67 0042 9868     		ldr	r0, [r3, #8]
-  68 0044 0A49     		ldr	r1, .L2+12
-  69 0046 0143     		orrs	r1, r1, r0
-  70 0048 9960     		str	r1, [r3, #8]
-  15:Core/Src/init.c ****     SET_BIT(GPIOC->OSPEEDR, GPIO_OSPEEDER_OSPEEDR12_0);
+  63 003a 9868     		ldr	r0, [r3, #8]
+  64 003c 0A49     		ldr	r1, .L2+12
+  65 003e 0143     		orrs	r1, r1, r0
+  66 0040 9960     		str	r1, [r3, #8]
+  14:Core/Src/init.c ****     SET_BIT(GPIOC->OSPEEDR, GPIO_OSPEEDER_OSPEEDR12_0);
+  67              		.loc 1 14 5 view .LVU8
+  68 0042 9168     		ldr	r1, [r2, #8]
+  69 0044 41F08071 		orr	r1, r1, #16777216
+  70 0048 9160     		str	r1, [r2, #8]
+  15:Core/Src/init.c ****     CLEAR_BIT(GPIOB->PUPDR, GPIO_PUPDR_PUPDR0_0 | GPIO_PUPDR_PUPDR7_0 | GPIO_PUPDR_PUPDR14_0);
   71              		.loc 1 15 5 view .LVU9
-  72 004a 9168     		ldr	r1, [r2, #8]
-  73 004c 41F08071 		orr	r1, r1, #16777216
-  74 0050 9160     		str	r1, [r2, #8]
-  16:Core/Src/init.c ****     CLEAR_BIT(GPIOB->PUPDR, GPIO_PUPDR_PUPDR0_0 | GPIO_PUPDR_PUPDR7_0 | GPIO_PUPDR_PUPDR14_0);
-  75              		.loc 1 16 5 view .LVU10
-  76 0052 D868     		ldr	r0, [r3, #12]
-  77 0054 0749     		ldr	r1, .L2+16
-  78 0056 0140     		ands	r1, r1, r0
-  79 0058 D960     		str	r1, [r3, #12]
-  17:Core/Src/init.c ****     CLEAR_BIT(GPIOC->PUPDR, GPIO_PUPDR_PUPDR12_0);
-  80              		.loc 1 17 5 view .LVU11
-  81 005a D368     		ldr	r3, [r2, #12]
-  82 005c 23F08073 		bic	r3, r3, #16777216
-  83 0060 D360     		str	r3, [r2, #12]
-  18:Core/Src/init.c **** }...
-  84              		.loc 1 18 1 is_stmt 0 view .LVU12
-  85 0062 7047     		bx	lr
-  86              	.L3:
-  87              		.align	2
-  88              	.L2:
-  89 0064 00380240 		.word	1073887232
-  90 0068 00040240 		.word	1073873920
-  91 006c 00080240 		.word	1073874944
-  92 0070 01400010 		.word	268451841
-  93 0074 FEBFFFEF 		.word	-268451842
-  94              		.cfi_endproc
-  95              	.LFE130:
-  97              		.text
-  98              	.Letext0:
-ARM GAS  C:\Users\dedla\AppData\Local\Temp\cc23Mv9Y.s 			page 3
-
-
-  99              		.file 2 "D:/Microcontroller/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_defa
- 100              		.file 3 "D:/Microcontroller/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h
- 101              		.file 4 "C:/Users/dedla/Documents/Labstm/Laboratory_Practice/CMSIS/Devices/Inc/stm32f429xx.h"
-ARM GAS  C:\Users\dedla\AppData\Local\Temp\cc23Mv9Y.s 			page 4
+  72 004a D868     		ldr	r0, [r3, #12]
+  73 004c 0749     		ldr	r1, .L2+16
+  74 004e 0140     		ands	r1, r1, r0
+  75 0050 D960     		str	r1, [r3, #12]
+  16:Core/Src/init.c ****     CLEAR_BIT(GPIOC->PUPDR, GPIO_PUPDR_PUPDR12_0);
+  76              		.loc 1 16 5 view .LVU10
+  77 0052 D368     		ldr	r3, [r2, #12]
+  78 0054 23F08073 		bic	r3, r3, #16777216
+  79 0058 D360     		str	r3, [r2, #12]
+  17:Core/Src/init.c **** }...
+  80              		.loc 1 17 1 is_stmt 0 view .LVU11
+  81 005a 7047     		bx	lr
+  82              	.L3:
+  83              		.align	2
+  84              	.L2:
+  85 005c 00380240 		.word	1073887232
+  86 0060 00040240 		.word	1073873920
+  87 0064 00080240 		.word	1073874944
+  88 0068 01400010 		.word	268451841
+  89 006c FEBFFFEF 		.word	-268451842
+  90              		.cfi_endproc
+  91              	.LFE130:
+  93              		.text
+  94              	.Letext0:
+  95              		.file 2 "D:/Microcontroller/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_defa
+  96              		.file 3 "D:/Microcontroller/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h
+  97              		.file 4 "C:/Users/dedla/Documents/Labstm/Laboratory_Practice/CMSIS/Devices/Inc/stm32f429xx.h"
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccDTTzZV.s 			page 3
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 init.c
-C:\Users\dedla\AppData\Local\Temp\cc23Mv9Y.s:21     .text.GPIO_Ini:00000000 $t
-C:\Users\dedla\AppData\Local\Temp\cc23Mv9Y.s:27     .text.GPIO_Ini:00000000 GPIO_Ini
-C:\Users\dedla\AppData\Local\Temp\cc23Mv9Y.s:89     .text.GPIO_Ini:00000064 $d
+C:\Users\dedla\AppData\Local\Temp\ccDTTzZV.s:21     .text.GPIO_Ini:00000000 $t
+C:\Users\dedla\AppData\Local\Temp\ccDTTzZV.s:27     .text.GPIO_Ini:00000000 GPIO_Ini
+C:\Users\dedla\AppData\Local\Temp\ccDTTzZV.s:85     .text.GPIO_Ini:0000005c $d
 
 NO UNDEFINED SYMBOLS
