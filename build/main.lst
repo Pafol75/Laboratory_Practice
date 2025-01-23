@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 1
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,21 +58,21 @@ ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 1
   14:Core/Src/main.c ****             flag1 = 1;
   43              		.loc 1 14 13 view .LVU2
   44              		.loc 1 14 19 is_stmt 0 view .LVU3
-ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 2
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s 			page 2
 
 
-  45 0008 324B     		ldr	r3, .L18
+  45 0008 304B     		ldr	r3, .L18
   46 000a 0122     		movs	r2, #1
   47 000c 1A70     		strb	r2, [r3]
   15:Core/Src/main.c ****             flag2 = 0;
   48              		.loc 1 15 13 is_stmt 1 view .LVU4
   49              		.loc 1 15 19 is_stmt 0 view .LVU5
   50 000e 0023     		movs	r3, #0
-  51 0010 314A     		ldr	r2, .L18+4
+  51 0010 2F4A     		ldr	r2, .L18+4
   52 0012 1370     		strb	r3, [r2]
   16:Core/Src/main.c ****             SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS7);
   53              		.loc 1 16 13 is_stmt 1 view .LVU6
-  54 0014 3149     		ldr	r1, .L18+8
+  54 0014 2F49     		ldr	r1, .L18+8
   55 0016 8A69     		ldr	r2, [r1, #24]
   56 0018 42F08002 		orr	r2, r2, #128
   57 001c 8A61     		str	r2, [r1, #24]
@@ -90,14 +90,14 @@ ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 1
   68              	.LVL3:
   69              	.L3:
   70              		.loc 1 17 31 discriminator 1 view .LVU11
-  71 0022 2F4A     		ldr	r2, .L18+12
+  71 0022 2D4A     		ldr	r2, .L18+12
   72 0024 9342     		cmp	r3, r2
   73 0026 FBDD     		ble	.L4
   74              	.LBE2:
   18:Core/Src/main.c ****                 ;
   19:Core/Src/main.c ****             SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR7);
   75              		.loc 1 19 13 view .LVU12
-  76 0028 2C4A     		ldr	r2, .L18+8
+  76 0028 2A4A     		ldr	r2, .L18+8
   77 002a 9369     		ldr	r3, [r2, #24]
   78              	.LVL4:
   79              		.loc 1 19 13 is_stmt 0 view .LVU13
@@ -113,20 +113,20 @@ ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 1
   85              		.loc 1 23 13 is_stmt 1 view .LVU14
   86              		.loc 1 23 19 is_stmt 0 view .LVU15
   87 0034 0023     		movs	r3, #0
-  88 0036 274A     		ldr	r2, .L18
+  88 0036 254A     		ldr	r2, .L18
   89 0038 1370     		strb	r3, [r2]
   24:Core/Src/main.c ****             flag2 = 1;
   90              		.loc 1 24 13 is_stmt 1 view .LVU16
   91              		.loc 1 24 19 is_stmt 0 view .LVU17
-ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 3
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s 			page 3
 
 
-  92 003a 274A     		ldr	r2, .L18+4
+  92 003a 254A     		ldr	r2, .L18+4
   93 003c 0121     		movs	r1, #1
   94 003e 1170     		strb	r1, [r2]
   25:Core/Src/main.c ****             SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS0);
   95              		.loc 1 25 13 is_stmt 1 view .LVU18
-  96 0040 2649     		ldr	r1, .L18+8
+  96 0040 2449     		ldr	r1, .L18+8
   97 0042 8A69     		ldr	r2, [r1, #24]
   98 0044 42F00102 		orr	r2, r2, #1
   99 0048 8A61     		str	r2, [r1, #24]
@@ -144,14 +144,14 @@ ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 1
  110              	.LVL8:
  111              	.L6:
  112              		.loc 1 26 31 discriminator 1 view .LVU23
- 113 004e 244A     		ldr	r2, .L18+12
+ 113 004e 224A     		ldr	r2, .L18+12
  114 0050 9342     		cmp	r3, r2
  115 0052 FBDD     		ble	.L7
  116              	.LBE3:
   27:Core/Src/main.c ****                 ;
   28:Core/Src/main.c ****             SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR0);
  117              		.loc 1 28 13 view .LVU24
- 118 0054 214A     		ldr	r2, .L18+8
+ 118 0054 1F4A     		ldr	r2, .L18+8
  119 0056 9369     		ldr	r3, [r2, #24]
  120              	.LVL9:
  121              		.loc 1 28 13 is_stmt 0 view .LVU25
@@ -169,7 +169,7 @@ ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 1
   35:Core/Src/main.c ****         if (flag2 == 1)
  127              		.loc 1 35 9 is_stmt 1 view .LVU26
  128              		.loc 1 35 19 is_stmt 0 view .LVU27
- 129 0060 1D4B     		ldr	r3, .L18+4
+ 129 0060 1B4B     		ldr	r3, .L18+4
  130 0062 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  131              		.loc 1 35 12 view .LVU28
  132 0064 012B     		cmp	r3, #1
@@ -178,13 +178,13 @@ ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 1
   10:Core/Src/main.c ****     {
  135              		.loc 1 10 5 is_stmt 1 view .LVU29
   12:Core/Src/main.c ****         {
-ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 4
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s 			page 4
 
 
  136              		.loc 1 12 9 view .LVU30
   12:Core/Src/main.c ****         {
  137              		.loc 1 12 14 is_stmt 0 view .LVU31
- 138 0068 1E4B     		ldr	r3, .L18+16
+ 138 0068 1C4B     		ldr	r3, .L18+16
  139 006a 1B69     		ldr	r3, [r3, #16]
   12:Core/Src/main.c ****         {
  140              		.loc 1 12 12 view .LVU32
@@ -195,7 +195,7 @@ ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 1
  144              		.loc 1 21 9 is_stmt 1 view .LVU33
   21:Core/Src/main.c ****         {
  145              		.loc 1 21 13 is_stmt 0 view .LVU34
- 146 0072 1C4B     		ldr	r3, .L18+16
+ 146 0072 1A4B     		ldr	r3, .L18+16
  147 0074 1B69     		ldr	r3, [r3, #16]
   21:Core/Src/main.c ****         {
  148              		.loc 1 21 12 view .LVU35
@@ -206,7 +206,7 @@ ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 1
  152              		.loc 1 30 9 is_stmt 1 view .LVU36
   30:Core/Src/main.c ****         {
  153              		.loc 1 30 19 is_stmt 0 view .LVU37
- 154 007c 154B     		ldr	r3, .L18
+ 154 007c 134B     		ldr	r3, .L18
  155 007e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
   30:Core/Src/main.c ****         {
  156              		.loc 1 30 12 view .LVU38
@@ -214,7 +214,7 @@ ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 1
  158 0082 EDD1     		bne	.L8
   32:Core/Src/main.c ****             SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS12);
  159              		.loc 1 32 13 is_stmt 1 view .LVU39
- 160 0084 174B     		ldr	r3, .L18+16
+ 160 0084 154B     		ldr	r3, .L18+16
  161 0086 1A68     		ldr	r2, [r3]
  162 0088 42F08072 		orr	r2, r2, #16777216
  163 008c 1A60     		str	r2, [r3]
@@ -228,101 +228,97 @@ ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 1
   36:Core/Src/main.c ****         {
   37:Core/Src/main.c ****             SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR12);
  170              		.loc 1 37 13 view .LVU41
- 171 0098 124B     		ldr	r3, .L18+16
+ 171 0098 104B     		ldr	r3, .L18+16
  172 009a 9A69     		ldr	r2, [r3, #24]
  173 009c 42F08052 		orr	r2, r2, #268435456
  174 00a0 9A61     		str	r2, [r3, #24]
-  38:Core/Src/main.c ****             SET_BIT(GPIOC->MODER, GPIO_MODER_MODE12);
- 175              		.loc 1 38 13 view .LVU42
- 176 00a2 1A68     		ldr	r2, [r3]
- 177 00a4 42F04072 		orr	r2, r2, #50331648
- 178 00a8 1A60     		str	r2, [r3]
+  38:Core/Src/main.c ****             // SET_BIT(GPIOC->MODER, GPIO_MODER_MODE12);
   39:Core/Src/main.c ****             if (READ_BIT(GPIOC->IDR, GPIO_IDR_IDR_12) != 0)
-ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 5
+ 175              		.loc 1 39 13 view .LVU42
+ 176              		.loc 1 39 17 is_stmt 0 view .LVU43
+ 177 00a2 1B69     		ldr	r3, [r3, #16]
+ 178              		.loc 1 39 16 view .LVU44
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s 			page 5
 
 
- 179              		.loc 1 39 13 view .LVU43
- 180              		.loc 1 39 17 is_stmt 0 view .LVU44
- 181 00aa 1B69     		ldr	r3, [r3, #16]
- 182              		.loc 1 39 16 view .LVU45
- 183 00ac 13F4805F 		tst	r3, #4096
- 184 00b0 DAD0     		beq	.L9
+ 179 00a4 13F4805F 		tst	r3, #4096
+ 180 00a8 DED0     		beq	.L9
   40:Core/Src/main.c ****             {
   41:Core/Src/main.c ****                 SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS14);
- 185              		.loc 1 41 17 is_stmt 1 view .LVU46
- 186 00b2 0A4A     		ldr	r2, .L18+8
- 187 00b4 9369     		ldr	r3, [r2, #24]
- 188 00b6 43F48043 		orr	r3, r3, #16384
- 189 00ba 9361     		str	r3, [r2, #24]
+ 181              		.loc 1 41 17 is_stmt 1 view .LVU45
+ 182 00aa 0A4A     		ldr	r2, .L18+8
+ 183 00ac 9369     		ldr	r3, [r2, #24]
+ 184 00ae 43F48043 		orr	r3, r3, #16384
+ 185 00b2 9361     		str	r3, [r2, #24]
   42:Core/Src/main.c ****                 for (int i = 0; i < 500000; i++)
- 190              		.loc 1 42 17 view .LVU47
- 191              	.LBB4:
- 192              		.loc 1 42 22 view .LVU48
- 193              	.LVL11:
- 194              		.loc 1 42 26 is_stmt 0 view .LVU49
- 195 00bc 0023     		movs	r3, #0
- 196              		.loc 1 42 17 view .LVU50
- 197 00be 00E0     		b	.L11
- 198              	.LVL12:
- 199              	.L12:
- 200              		.loc 1 42 46 is_stmt 1 discriminator 3 view .LVU51
- 201 00c0 0133     		adds	r3, r3, #1
- 202              	.LVL13:
- 203              	.L11:
- 204              		.loc 1 42 35 discriminator 1 view .LVU52
- 205 00c2 074A     		ldr	r2, .L18+12
- 206 00c4 9342     		cmp	r3, r2
- 207 00c6 FBDD     		ble	.L12
- 208              	.LBE4:
+ 186              		.loc 1 42 17 view .LVU46
+ 187              	.LBB4:
+ 188              		.loc 1 42 22 view .LVU47
+ 189              	.LVL11:
+ 190              		.loc 1 42 26 is_stmt 0 view .LVU48
+ 191 00b4 0023     		movs	r3, #0
+ 192              		.loc 1 42 17 view .LVU49
+ 193 00b6 00E0     		b	.L11
+ 194              	.LVL12:
+ 195              	.L12:
+ 196              		.loc 1 42 46 is_stmt 1 discriminator 3 view .LVU50
+ 197 00b8 0133     		adds	r3, r3, #1
+ 198              	.LVL13:
+ 199              	.L11:
+ 200              		.loc 1 42 35 discriminator 1 view .LVU51
+ 201 00ba 074A     		ldr	r2, .L18+12
+ 202 00bc 9342     		cmp	r3, r2
+ 203 00be FBDD     		ble	.L12
+ 204              	.LBE4:
   43:Core/Src/main.c ****                     ;
   44:Core/Src/main.c ****                 SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR14);
- 209              		.loc 1 44 17 view .LVU53
- 210 00c8 044A     		ldr	r2, .L18+8
- 211 00ca 9369     		ldr	r3, [r2, #24]
- 212              	.LVL14:
- 213              		.loc 1 44 17 is_stmt 0 view .LVU54
- 214 00cc 43F08043 		orr	r3, r3, #1073741824
- 215 00d0 9361     		str	r3, [r2, #24]
- 216 00d2 C9E7     		b	.L9
- 217              	.L19:
- 218              		.align	2
- 219              	.L18:
- 220 00d4 00000000 		.word	flag1
- 221 00d8 00000000 		.word	flag2
- 222 00dc 00040240 		.word	1073873920
- 223 00e0 1FA10700 		.word	499999
- 224 00e4 00080240 		.word	1073874944
- 225              		.cfi_endproc
- 226              	.LFE130:
- 228              		.global	flag2
- 229              		.section	.bss.flag2,"aw",%nobits
- 232              	flag2:
- 233 0000 00       		.space	1
-ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 6
+ 205              		.loc 1 44 17 view .LVU52
+ 206 00c0 044A     		ldr	r2, .L18+8
+ 207 00c2 9369     		ldr	r3, [r2, #24]
+ 208              	.LVL14:
+ 209              		.loc 1 44 17 is_stmt 0 view .LVU53
+ 210 00c4 43F08043 		orr	r3, r3, #1073741824
+ 211 00c8 9361     		str	r3, [r2, #24]
+ 212 00ca CDE7     		b	.L9
+ 213              	.L19:
+ 214              		.align	2
+ 215              	.L18:
+ 216 00cc 00000000 		.word	flag1
+ 217 00d0 00000000 		.word	flag2
+ 218 00d4 00040240 		.word	1073873920
+ 219 00d8 1FA10700 		.word	499999
+ 220 00dc 00080240 		.word	1073874944
+ 221              		.cfi_endproc
+ 222              	.LFE130:
+ 224              		.global	flag2
+ 225              		.section	.bss.flag2,"aw",%nobits
+ 228              	flag2:
+ 229 0000 00       		.space	1
+ 230              		.global	flag1
+ 231              		.section	.bss.flag1,"aw",%nobits
+ 234              	flag1:
+ 235 0000 00       		.space	1
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s 			page 6
 
 
- 234              		.global	flag1
- 235              		.section	.bss.flag1,"aw",%nobits
- 238              	flag1:
- 239 0000 00       		.space	1
- 240              		.text
- 241              	.Letext0:
- 242              		.file 2 "D:/Microcontroller/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_defa
- 243              		.file 3 "D:/Microcontroller/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h
- 244              		.file 4 "C:/Users/dedla/Documents/Labstm/Laboratory_Practice/CMSIS/Devices/Inc/stm32f429xx.h"
- 245              		.file 5 "Core/Src/../Inc/init.h"
-ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s 			page 7
+ 236              		.text
+ 237              	.Letext0:
+ 238              		.file 2 "D:/Microcontroller/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_defa
+ 239              		.file 3 "D:/Microcontroller/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h
+ 240              		.file 4 "C:/Users/dedla/Documents/Labstm/Laboratory_Practice/CMSIS/Devices/Inc/stm32f429xx.h"
+ 241              		.file 5 "Core/Src/../Inc/init.h"
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s:21     .text.main:00000000 $t
-C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s:27     .text.main:00000000 main
-C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s:220    .text.main:000000d4 $d
-C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s:238    .bss.flag1:00000000 flag1
-C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s:232    .bss.flag2:00000000 flag2
-C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s:233    .bss.flag2:00000000 $d
-C:\Users\dedla\AppData\Local\Temp\ccI1mWwK.s:239    .bss.flag1:00000000 $d
+C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s:21     .text.main:00000000 $t
+C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s:27     .text.main:00000000 main
+C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s:216    .text.main:000000cc $d
+C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s:234    .bss.flag1:00000000 flag1
+C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s:228    .bss.flag2:00000000 flag2
+C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s:229    .bss.flag2:00000000 $d
+C:\Users\dedla\AppData\Local\Temp\ccjOInUa.s:235    .bss.flag1:00000000 $d
 
 UNDEFINED SYMBOLS
 GPIO_Ini
