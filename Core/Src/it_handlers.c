@@ -6,7 +6,7 @@ volatile uint8_t flag1, flag2, flag3, flag4, flag5, flag6, LedState;
 volatile uint8_t flag1ON, flag2ON, flag3ON, flag4ON, flag5ON, flag6ON;
 volatile uint8_t BtnCount1, BtnCount2, BtnCount3;
 volatile uint16_t ledTime1, ledTime2, ledTime3, ledTime4, ledTime5, ledTime6;
-volatile uint16_t freq1, freq2, freq3, freq4, freq5, freq6;
+
 volatile uint16_t GlobalTickCount;
 volatile uint16_t dtime, cycleTime;
 volatile uint8_t Button1Type;
