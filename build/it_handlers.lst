@@ -1,0 +1,196 @@
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"it_handlers.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/it_handlers.c"
+  20              		.section	.text.SysTick_Handler,"ax",%progbits
+  21              		.align	1
+  22              		.global	SysTick_Handler
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	SysTick_Handler:
+  28              	.LFB130:
+   1:Core/Src/it_handlers.c **** #include "it_handlers.h"
+   2:Core/Src/it_handlers.c **** #include "main.h"
+   3:Core/Src/it_handlers.c **** #include "init.h"
+   4:Core/Src/it_handlers.c **** 
+   5:Core/Src/it_handlers.c **** 
+   6:Core/Src/it_handlers.c **** void SysTick_Handler(void)
+   7:Core/Src/it_handlers.c **** {
+  29              		.loc 1 7 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+   8:Core/Src/it_handlers.c **** 
+   9:Core/Src/it_handlers.c **** }
+  34              		.loc 1 9 1 view .LVU1
+  35 0000 7047     		bx	lr
+  36              		.cfi_endproc
+  37              	.LFE130:
+  39              		.section	.text.EXTI4_IRQHandler,"ax",%progbits
+  40              		.align	1
+  41              		.global	EXTI4_IRQHandler
+  42              		.syntax unified
+  43              		.thumb
+  44              		.thumb_func
+  46              	EXTI4_IRQHandler:
+  47              	.LFB131:
+  10:Core/Src/it_handlers.c **** void EXTI4_IRQHandler(void)
+  11:Core/Src/it_handlers.c **** {
+  48              		.loc 1 11 1 view -0
+  49              		.cfi_startproc
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s 			page 2
+
+
+  50              		@ args = 0, pretend = 0, frame = 0
+  51              		@ frame_needed = 0, uses_anonymous_args = 0
+  52              		@ link register save eliminated.
+  12:Core/Src/it_handlers.c ****     if (EXTI->PR & EXTI_PR_PR4) {
+  53              		.loc 1 12 5 view .LVU3
+  54              		.loc 1 12 13 is_stmt 0 view .LVU4
+  55 0000 044B     		ldr	r3, .L4
+  56 0002 5B69     		ldr	r3, [r3, #20]
+  57              		.loc 1 12 8 view .LVU5
+  58 0004 13F0100F 		tst	r3, #16
+  59 0008 02D0     		beq	.L2
+  13:Core/Src/it_handlers.c ****         EXTI->PR = EXTI_PR_PR4;
+  60              		.loc 1 13 9 is_stmt 1 view .LVU6
+  61              		.loc 1 13 18 is_stmt 0 view .LVU7
+  62 000a 024B     		ldr	r3, .L4
+  63 000c 1022     		movs	r2, #16
+  64 000e 5A61     		str	r2, [r3, #20]
+  65              	.L2:
+  14:Core/Src/it_handlers.c ****     }
+  15:Core/Src/it_handlers.c **** }
+  66              		.loc 1 15 1 view .LVU8
+  67 0010 7047     		bx	lr
+  68              	.L5:
+  69 0012 00BF     		.align	2
+  70              	.L4:
+  71 0014 003C0140 		.word	1073822720
+  72              		.cfi_endproc
+  73              	.LFE131:
+  75              		.section	.text.EXTI9_5_IRQHandler,"ax",%progbits
+  76              		.align	1
+  77              		.global	EXTI9_5_IRQHandler
+  78              		.syntax unified
+  79              		.thumb
+  80              		.thumb_func
+  82              	EXTI9_5_IRQHandler:
+  83              	.LFB132:
+  16:Core/Src/it_handlers.c **** 
+  17:Core/Src/it_handlers.c **** void EXTI9_5_IRQHandler(void)
+  18:Core/Src/it_handlers.c **** {
+  84              		.loc 1 18 1 is_stmt 1 view -0
+  85              		.cfi_startproc
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+  88              		@ link register save eliminated.
+  19:Core/Src/it_handlers.c ****     if (EXTI->PR & EXTI_PR_PR5) {
+  89              		.loc 1 19 5 view .LVU10
+  90              		.loc 1 19 13 is_stmt 0 view .LVU11
+  91 0000 084B     		ldr	r3, .L9
+  92 0002 5B69     		ldr	r3, [r3, #20]
+  93              		.loc 1 19 8 view .LVU12
+  94 0004 13F0200F 		tst	r3, #32
+  95 0008 02D0     		beq	.L7
+  20:Core/Src/it_handlers.c ****         EXTI->PR = EXTI_PR_PR5;
+  96              		.loc 1 20 9 is_stmt 1 view .LVU13
+  97              		.loc 1 20 18 is_stmt 0 view .LVU14
+  98 000a 064B     		ldr	r3, .L9
+  99 000c 2022     		movs	r2, #32
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s 			page 3
+
+
+ 100 000e 5A61     		str	r2, [r3, #20]
+ 101              	.L7:
+  21:Core/Src/it_handlers.c ****     }
+  22:Core/Src/it_handlers.c **** 
+  23:Core/Src/it_handlers.c ****     if (EXTI->PR & EXTI_PR_PR6) {
+ 102              		.loc 1 23 5 is_stmt 1 view .LVU15
+ 103              		.loc 1 23 13 is_stmt 0 view .LVU16
+ 104 0010 044B     		ldr	r3, .L9
+ 105 0012 5B69     		ldr	r3, [r3, #20]
+ 106              		.loc 1 23 8 view .LVU17
+ 107 0014 13F0400F 		tst	r3, #64
+ 108 0018 02D0     		beq	.L6
+  24:Core/Src/it_handlers.c ****         EXTI->PR = EXTI_PR_PR6;
+ 109              		.loc 1 24 9 is_stmt 1 view .LVU18
+ 110              		.loc 1 24 18 is_stmt 0 view .LVU19
+ 111 001a 024B     		ldr	r3, .L9
+ 112 001c 4022     		movs	r2, #64
+ 113 001e 5A61     		str	r2, [r3, #20]
+ 114              	.L6:
+  25:Core/Src/it_handlers.c ****     }
+  26:Core/Src/it_handlers.c **** }
+ 115              		.loc 1 26 1 view .LVU20
+ 116 0020 7047     		bx	lr
+ 117              	.L10:
+ 118 0022 00BF     		.align	2
+ 119              	.L9:
+ 120 0024 003C0140 		.word	1073822720
+ 121              		.cfi_endproc
+ 122              	.LFE132:
+ 124              		.section	.text.User_Delay,"ax",%progbits
+ 125              		.align	1
+ 126              		.global	User_Delay
+ 127              		.syntax unified
+ 128              		.thumb
+ 129              		.thumb_func
+ 131              	User_Delay:
+ 132              	.LVL0:
+ 133              	.LFB133:
+  27:Core/Src/it_handlers.c **** void User_Delay(uint32_t delay)
+  28:Core/Src/it_handlers.c **** {
+ 134              		.loc 1 28 1 is_stmt 1 view -0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 0
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138              		@ link register save eliminated.
+  29:Core/Src/it_handlers.c **** 
+  30:Core/Src/it_handlers.c **** }...
+ 139              		.loc 1 30 1 view .LVU22
+ 140 0000 7047     		bx	lr
+ 141              		.cfi_endproc
+ 142              	.LFE133:
+ 144              		.text
+ 145              	.Letext0:
+ 146              		.file 2 "D:/Microcontroller/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_defa
+ 147              		.file 3 "D:/Microcontroller/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h
+ 148              		.file 4 "C:/Users/dedla/Documents/Labstm/Laboratory_Practice/CMSIS/Devices/Inc/stm32f429xx.h"
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 it_handlers.c
+C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s:21     .text.SysTick_Handler:00000000 $t
+C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s:27     .text.SysTick_Handler:00000000 SysTick_Handler
+C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s:40     .text.EXTI4_IRQHandler:00000000 $t
+C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s:46     .text.EXTI4_IRQHandler:00000000 EXTI4_IRQHandler
+C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s:71     .text.EXTI4_IRQHandler:00000014 $d
+C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s:76     .text.EXTI9_5_IRQHandler:00000000 $t
+C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s:82     .text.EXTI9_5_IRQHandler:00000000 EXTI9_5_IRQHandler
+C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s:120    .text.EXTI9_5_IRQHandler:00000024 $d
+C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s:125    .text.User_Delay:00000000 $t
+C:\Users\dedla\AppData\Local\Temp\ccjVRN7P.s:131    .text.User_Delay:00000000 User_Delay
+
+NO UNDEFINED SYMBOLS

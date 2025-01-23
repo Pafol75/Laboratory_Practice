@@ -75,7 +75,6 @@ void RCC_Init(void)
 
 void ITR_init(void)
 {
-    // Включение тактирования для SYSCFG
     SET_BIT(RCC->APB2ENR, RCC_APB2ENR_SYSCFGEN);
 
     MODIFY_REG(SYSCFG->EXTICR[1], SYSCFG_EXTICR2_EXTI4_Msk, SYSCFG_EXTICR2_EXTI4_PB);
