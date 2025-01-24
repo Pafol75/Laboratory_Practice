@@ -1,0 +1,819 @@
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/main.c"
+  20              		.section	.text.mode1_control,"ax",%progbits
+  21              		.align	1
+  22              		.global	mode1_control
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	mode1_control:
+  28              	.LFB130:
+   1:Core/Src/main.c **** #include "../Inc/init.h"
+   2:Core/Src/main.c **** #include "../Inc/main.h"
+   3:Core/Src/main.c **** 
+   4:Core/Src/main.c **** volatile uint8_t mode = 0; // Режим работы гирлянды
+   5:Core/Src/main.c **** volatile uint8_t currentLED = 0; // Текущий светодиод для настройки ч�
+   6:Core/Src/main.c **** volatile uint8_t blinkFrequency = 0; // Частота мерцания
+   7:Core/Src/main.c **** volatile uint8_t blinkFrequencies[6] = {0};
+   8:Core/Src/main.c **** extern volatile uint32_t initTime;
+   9:Core/Src/main.c **** volatile uint32_t interval;
+  10:Core/Src/main.c **** int freq1[3] = {2400, 1300, 600};
+  11:Core/Src/main.c **** int freq2[3] = {1500, 900, 200};
+  12:Core/Src/main.c **** int CountMode[6] = {0};
+  13:Core/Src/main.c **** 
+  14:Core/Src/main.c **** void mode1_control(void)
+  15:Core/Src/main.c **** {
+  29              		.loc 1 15 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  16:Core/Src/main.c ****     static uint8_t ledIndex = 0;
+  34              		.loc 1 16 5 view .LVU1
+  17:Core/Src/main.c ****     static uint32_t lastTime = 0;
+  35              		.loc 1 17 5 view .LVU2
+  18:Core/Src/main.c ****     uint32_t currentTime = initTime;
+  36              		.loc 1 18 5 view .LVU3
+  37              		.loc 1 18 14 is_stmt 0 view .LVU4
+  38 0000 2B4B     		ldr	r3, .L15
+  39 0002 1968     		ldr	r1, [r3]
+  40              	.LVL0:
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 2
+
+
+  19:Core/Src/main.c **** 
+  20:Core/Src/main.c ****     switch (blinkFrequency) {
+  41              		.loc 1 20 5 is_stmt 1 view .LVU5
+  42 0004 2B4B     		ldr	r3, .L15+4
+  43 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  44 0008 DBB2     		uxtb	r3, r3
+  45 000a 012B     		cmp	r3, #1
+  46 000c 16D0     		beq	.L2
+  47 000e 022B     		cmp	r3, #2
+  48 0010 19D0     		beq	.L3
+  49 0012 1BB9     		cbnz	r3, .L4
+  21:Core/Src/main.c ****         case 0:
+  22:Core/Src/main.c ****             interval = freq1[0]; // 0.6 Гц
+  50              		.loc 1 22 13 view .LVU6
+  51              		.loc 1 22 29 is_stmt 0 view .LVU7
+  52 0014 284B     		ldr	r3, .L15+8
+  53 0016 1A68     		ldr	r2, [r3]
+  54              		.loc 1 22 22 view .LVU8
+  55 0018 284B     		ldr	r3, .L15+12
+  56 001a 1A60     		str	r2, [r3]
+  23:Core/Src/main.c ****             break;
+  57              		.loc 1 23 13 is_stmt 1 view .LVU9
+  58              	.L4:
+  24:Core/Src/main.c ****         case 1:
+  25:Core/Src/main.c ****             interval = freq1[1]; // 1.3 Гц
+  26:Core/Src/main.c ****             break;
+  27:Core/Src/main.c ****         case 2:
+  28:Core/Src/main.c ****             interval = freq1[2]; // 2.4 Гц
+  29:Core/Src/main.c ****             break;
+  30:Core/Src/main.c ****     }
+  31:Core/Src/main.c **** 
+  32:Core/Src/main.c ****     if (currentTime - lastTime >= interval) {
+  59              		.loc 1 32 5 view .LVU10
+  60              		.loc 1 32 21 is_stmt 0 view .LVU11
+  61 001c 284B     		ldr	r3, .L15+16
+  62 001e 1B68     		ldr	r3, [r3]
+  63 0020 CB1A     		subs	r3, r1, r3
+  64              		.loc 1 32 32 view .LVU12
+  65 0022 264A     		ldr	r2, .L15+12
+  66 0024 1268     		ldr	r2, [r2]
+  67              		.loc 1 32 8 view .LVU13
+  68 0026 9342     		cmp	r3, r2
+  69 0028 23D3     		bcc	.L1
+  33:Core/Src/main.c ****         // Включение текущего светодиода
+  34:Core/Src/main.c ****         switch (ledIndex) {
+  70              		.loc 1 34 9 is_stmt 1 view .LVU14
+  71 002a 264B     		ldr	r3, .L15+20
+  72 002c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  73 002e 052B     		cmp	r3, #5
+  74 0030 13D8     		bhi	.L6
+  75 0032 DFE803F0 		tbb	[pc, r3]
+  76              	.L8:
+  77 0036 0D       		.byte	(.L13-.L8)/2
+  78 0037 1F       		.byte	(.L12-.L8)/2
+  79 0038 25       		.byte	(.L11-.L8)/2
+  80 0039 2B       		.byte	(.L10-.L8)/2
+  81 003a 31       		.byte	(.L9-.L8)/2
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 3
+
+
+  82 003b 37       		.byte	(.L7-.L8)/2
+  83              		.p2align 1
+  84              	.L2:
+  25:Core/Src/main.c ****             break;
+  85              		.loc 1 25 13 view .LVU15
+  25:Core/Src/main.c ****             break;
+  86              		.loc 1 25 29 is_stmt 0 view .LVU16
+  87 003c 1E4B     		ldr	r3, .L15+8
+  88 003e 5A68     		ldr	r2, [r3, #4]
+  25:Core/Src/main.c ****             break;
+  89              		.loc 1 25 22 view .LVU17
+  90 0040 1E4B     		ldr	r3, .L15+12
+  91 0042 1A60     		str	r2, [r3]
+  26:Core/Src/main.c ****         case 2:
+  92              		.loc 1 26 13 is_stmt 1 view .LVU18
+  93 0044 EAE7     		b	.L4
+  94              	.L3:
+  28:Core/Src/main.c ****             break;
+  95              		.loc 1 28 13 view .LVU19
+  28:Core/Src/main.c ****             break;
+  96              		.loc 1 28 29 is_stmt 0 view .LVU20
+  97 0046 1C4B     		ldr	r3, .L15+8
+  98 0048 9A68     		ldr	r2, [r3, #8]
+  28:Core/Src/main.c ****             break;
+  99              		.loc 1 28 22 view .LVU21
+ 100 004a 1C4B     		ldr	r3, .L15+12
+ 101 004c 1A60     		str	r2, [r3]
+  29:Core/Src/main.c ****     }
+ 102              		.loc 1 29 13 is_stmt 1 view .LVU22
+ 103 004e E5E7     		b	.L4
+ 104              	.L13:
+  35:Core/Src/main.c ****             case 0:
+  36:Core/Src/main.c ****                 GPIOB->ODR ^= GPIO_ODR_OD0;
+ 105              		.loc 1 36 17 view .LVU23
+ 106              		.loc 1 36 22 is_stmt 0 view .LVU24
+ 107 0050 1D48     		ldr	r0, .L15+24
+ 108 0052 4269     		ldr	r2, [r0, #20]
+ 109              		.loc 1 36 28 view .LVU25
+ 110 0054 82F00102 		eor	r2, r2, #1
+ 111 0058 4261     		str	r2, [r0, #20]
+  37:Core/Src/main.c ****                 break;
+ 112              		.loc 1 37 17 is_stmt 1 view .LVU26
+ 113              	.L6:
+  38:Core/Src/main.c ****             case 1:
+  39:Core/Src/main.c ****                 GPIOB->ODR ^= GPIO_ODR_OD7;
+  40:Core/Src/main.c ****                 break;
+  41:Core/Src/main.c ****             case 2:
+  42:Core/Src/main.c ****                 GPIOB->ODR ^= GPIO_ODR_OD14;
+  43:Core/Src/main.c ****                 break;
+  44:Core/Src/main.c ****             case 3:
+  45:Core/Src/main.c ****                 GPIOB->ODR ^= GPIO_ODR_OD15;
+  46:Core/Src/main.c ****                 break;
+  47:Core/Src/main.c ****             case 4:
+  48:Core/Src/main.c ****                 GPIOD->ODR ^= GPIO_ODR_OD6;
+  49:Core/Src/main.c ****                 break;
+  50:Core/Src/main.c ****             case 5:
+  51:Core/Src/main.c ****                 GPIOD->ODR ^= GPIO_ODR_OD7;
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 4
+
+
+  52:Core/Src/main.c ****                 break;
+  53:Core/Src/main.c ****         }
+  54:Core/Src/main.c ****         ledIndex = (ledIndex + 1) % 6;
+ 114              		.loc 1 54 9 view .LVU27
+ 115              		.loc 1 54 30 is_stmt 0 view .LVU28
+ 116 005a 5A1C     		adds	r2, r3, #1
+ 117              		.loc 1 54 35 view .LVU29
+ 118 005c 1B4B     		ldr	r3, .L15+28
+ 119 005e 83FB0203 		smull	r0, r3, r3, r2
+ 120 0062 03EB4303 		add	r3, r3, r3, lsl #1
+ 121 0066 5800     		lsls	r0, r3, #1
+ 122 0068 131A     		subs	r3, r2, r0
+ 123              		.loc 1 54 18 view .LVU30
+ 124 006a 164A     		ldr	r2, .L15+20
+ 125 006c 1370     		strb	r3, [r2]
+  55:Core/Src/main.c ****         lastTime = currentTime;
+ 126              		.loc 1 55 9 is_stmt 1 view .LVU31
+ 127              		.loc 1 55 18 is_stmt 0 view .LVU32
+ 128 006e 144B     		ldr	r3, .L15+16
+ 129 0070 1960     		str	r1, [r3]
+ 130              	.L1:
+  56:Core/Src/main.c ****     }
+  57:Core/Src/main.c **** }
+ 131              		.loc 1 57 1 view .LVU33
+ 132 0072 7047     		bx	lr
+ 133              	.L12:
+  39:Core/Src/main.c ****                 break;
+ 134              		.loc 1 39 17 is_stmt 1 view .LVU34
+  39:Core/Src/main.c ****                 break;
+ 135              		.loc 1 39 22 is_stmt 0 view .LVU35
+ 136 0074 1448     		ldr	r0, .L15+24
+ 137 0076 4269     		ldr	r2, [r0, #20]
+  39:Core/Src/main.c ****                 break;
+ 138              		.loc 1 39 28 view .LVU36
+ 139 0078 82F08002 		eor	r2, r2, #128
+ 140 007c 4261     		str	r2, [r0, #20]
+  40:Core/Src/main.c ****             case 2:
+ 141              		.loc 1 40 17 is_stmt 1 view .LVU37
+ 142 007e ECE7     		b	.L6
+ 143              	.L11:
+  42:Core/Src/main.c ****                 break;
+ 144              		.loc 1 42 17 view .LVU38
+  42:Core/Src/main.c ****                 break;
+ 145              		.loc 1 42 22 is_stmt 0 view .LVU39
+ 146 0080 1148     		ldr	r0, .L15+24
+ 147 0082 4269     		ldr	r2, [r0, #20]
+  42:Core/Src/main.c ****                 break;
+ 148              		.loc 1 42 28 view .LVU40
+ 149 0084 82F48042 		eor	r2, r2, #16384
+ 150 0088 4261     		str	r2, [r0, #20]
+  43:Core/Src/main.c ****             case 3:
+ 151              		.loc 1 43 17 is_stmt 1 view .LVU41
+ 152 008a E6E7     		b	.L6
+ 153              	.L10:
+  45:Core/Src/main.c ****                 break;
+ 154              		.loc 1 45 17 view .LVU42
+  45:Core/Src/main.c ****                 break;
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 5
+
+
+ 155              		.loc 1 45 22 is_stmt 0 view .LVU43
+ 156 008c 0E48     		ldr	r0, .L15+24
+ 157 008e 4269     		ldr	r2, [r0, #20]
+  45:Core/Src/main.c ****                 break;
+ 158              		.loc 1 45 28 view .LVU44
+ 159 0090 82F40042 		eor	r2, r2, #32768
+ 160 0094 4261     		str	r2, [r0, #20]
+  46:Core/Src/main.c ****             case 4:
+ 161              		.loc 1 46 17 is_stmt 1 view .LVU45
+ 162 0096 E0E7     		b	.L6
+ 163              	.L9:
+  48:Core/Src/main.c ****                 break;
+ 164              		.loc 1 48 17 view .LVU46
+  48:Core/Src/main.c ****                 break;
+ 165              		.loc 1 48 22 is_stmt 0 view .LVU47
+ 166 0098 0D48     		ldr	r0, .L15+32
+ 167 009a 4269     		ldr	r2, [r0, #20]
+  48:Core/Src/main.c ****                 break;
+ 168              		.loc 1 48 28 view .LVU48
+ 169 009c 82F04002 		eor	r2, r2, #64
+ 170 00a0 4261     		str	r2, [r0, #20]
+  49:Core/Src/main.c ****             case 5:
+ 171              		.loc 1 49 17 is_stmt 1 view .LVU49
+ 172 00a2 DAE7     		b	.L6
+ 173              	.L7:
+  51:Core/Src/main.c ****                 break;
+ 174              		.loc 1 51 17 view .LVU50
+  51:Core/Src/main.c ****                 break;
+ 175              		.loc 1 51 22 is_stmt 0 view .LVU51
+ 176 00a4 0A48     		ldr	r0, .L15+32
+ 177 00a6 4269     		ldr	r2, [r0, #20]
+  51:Core/Src/main.c ****                 break;
+ 178              		.loc 1 51 28 view .LVU52
+ 179 00a8 82F08002 		eor	r2, r2, #128
+ 180 00ac 4261     		str	r2, [r0, #20]
+  52:Core/Src/main.c ****         }
+ 181              		.loc 1 52 17 is_stmt 1 view .LVU53
+ 182 00ae D4E7     		b	.L6
+ 183              	.L16:
+ 184              		.align	2
+ 185              	.L15:
+ 186 00b0 00000000 		.word	initTime
+ 187 00b4 00000000 		.word	blinkFrequency
+ 188 00b8 00000000 		.word	freq1
+ 189 00bc 00000000 		.word	interval
+ 190 00c0 00000000 		.word	lastTime.2
+ 191 00c4 00000000 		.word	ledIndex.1
+ 192 00c8 00040240 		.word	1073873920
+ 193 00cc ABAAAA2A 		.word	715827883
+ 194 00d0 000C0240 		.word	1073875968
+ 195              		.cfi_endproc
+ 196              	.LFE130:
+ 198              		.section	.text.mode2_control,"ax",%progbits
+ 199              		.align	1
+ 200              		.global	mode2_control
+ 201              		.syntax unified
+ 202              		.thumb
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 6
+
+
+ 203              		.thumb_func
+ 205              	mode2_control:
+ 206              	.LFB131:
+  58:Core/Src/main.c **** 
+  59:Core/Src/main.c **** void mode2_control(void)
+  60:Core/Src/main.c **** {
+ 207              		.loc 1 60 1 view -0
+ 208              		.cfi_startproc
+ 209              		@ args = 0, pretend = 0, frame = 0
+ 210              		@ frame_needed = 0, uses_anonymous_args = 0
+ 211              		@ link register save eliminated.
+ 212 0000 10B4     		push	{r4}
+ 213              	.LCFI0:
+ 214              		.cfi_def_cfa_offset 4
+ 215              		.cfi_offset 4, -4
+  61:Core/Src/main.c ****     static uint32_t lastTimes[6] = {0, 0, 0, 0, 0, 0};
+ 216              		.loc 1 61 5 view .LVU55
+  62:Core/Src/main.c ****     uint32_t currentTime = initTime;
+ 217              		.loc 1 62 5 view .LVU56
+ 218              		.loc 1 62 14 is_stmt 0 view .LVU57
+ 219 0002 2E4B     		ldr	r3, .L36
+ 220 0004 1C68     		ldr	r4, [r3]
+ 221              	.LVL1:
+  63:Core/Src/main.c **** 
+  64:Core/Src/main.c ****     for (uint8_t i = 0; i < 6; i++) {
+ 222              		.loc 1 64 5 is_stmt 1 view .LVU58
+ 223              	.LBB2:
+ 224              		.loc 1 64 10 view .LVU59
+ 225              		.loc 1 64 18 is_stmt 0 view .LVU60
+ 226 0006 0023     		movs	r3, #0
+ 227              		.loc 1 64 5 view .LVU61
+ 228 0008 11E0     		b	.L18
+ 229              	.LVL2:
+ 230              	.L19:
+ 231              	.LBB3:
+  65:Core/Src/main.c ****         uint32_t interval = 0;
+  66:Core/Src/main.c ****         switch (blinkFrequencies[i]) {
+  67:Core/Src/main.c ****             case 0:
+  68:Core/Src/main.c ****                 interval = freq2[0]; // 0.2 Гц
+  69:Core/Src/main.c ****                 break;
+  70:Core/Src/main.c ****             case 1:
+  71:Core/Src/main.c ****                 interval = freq2[1]; // 0.9 Гц
+ 232              		.loc 1 71 17 is_stmt 1 view .LVU62
+ 233              		.loc 1 71 33 is_stmt 0 view .LVU63
+ 234 000a 2D4A     		ldr	r2, .L36+4
+ 235 000c 5068     		ldr	r0, [r2, #4]
+ 236              	.LVL3:
+  72:Core/Src/main.c ****                 break;
+ 237              		.loc 1 72 17 is_stmt 1 view .LVU64
+ 238 000e 1CE0     		b	.L21
+ 239              	.LVL4:
+ 240              	.L20:
+  73:Core/Src/main.c ****             case 2:
+  74:Core/Src/main.c ****                 interval = freq2[2]; // 1.5 Гц
+ 241              		.loc 1 74 17 view .LVU65
+ 242              		.loc 1 74 33 is_stmt 0 view .LVU66
+ 243 0010 2B4A     		ldr	r2, .L36+4
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 7
+
+
+ 244 0012 9068     		ldr	r0, [r2, #8]
+ 245              	.LVL5:
+  75:Core/Src/main.c ****                 break;
+ 246              		.loc 1 75 17 is_stmt 1 view .LVU67
+ 247 0014 19E0     		b	.L21
+ 248              	.LVL6:
+ 249              	.L32:
+  66:Core/Src/main.c ****             case 0:
+ 250              		.loc 1 66 9 is_stmt 0 view .LVU68
+ 251 0016 0020     		movs	r0, #0
+ 252 0018 17E0     		b	.L21
+ 253              	.LVL7:
+ 254              	.L30:
+  76:Core/Src/main.c ****         }
+  77:Core/Src/main.c **** 
+  78:Core/Src/main.c ****         if (currentTime - lastTimes[i] >= interval) {
+  79:Core/Src/main.c ****             // Мерцание текущего светодиода
+  80:Core/Src/main.c ****             switch (i) {
+  81:Core/Src/main.c ****                 case 0:
+  82:Core/Src/main.c ****                     GPIOB->ODR ^= GPIO_ODR_OD0;
+ 255              		.loc 1 82 21 is_stmt 1 view .LVU69
+ 256              		.loc 1 82 26 is_stmt 0 view .LVU70
+ 257 001a 2A48     		ldr	r0, .L36+8
+ 258              	.LVL8:
+ 259              		.loc 1 82 26 view .LVU71
+ 260 001c 4269     		ldr	r2, [r0, #20]
+ 261              		.loc 1 82 32 view .LVU72
+ 262 001e 82F00102 		eor	r2, r2, #1
+ 263 0022 4261     		str	r2, [r0, #20]
+  83:Core/Src/main.c ****                     break;
+ 264              		.loc 1 83 21 is_stmt 1 view .LVU73
+ 265              	.L23:
+  84:Core/Src/main.c ****                 case 1:
+  85:Core/Src/main.c ****                     GPIOB->ODR ^= GPIO_ODR_OD7;
+  86:Core/Src/main.c ****                     break;
+  87:Core/Src/main.c ****                 case 2:
+  88:Core/Src/main.c ****                     GPIOB->ODR ^= GPIO_ODR_OD14;
+  89:Core/Src/main.c ****                     break;
+  90:Core/Src/main.c ****                 case 3:
+  91:Core/Src/main.c ****                     GPIOB->ODR ^= GPIO_ODR_OD15;
+  92:Core/Src/main.c ****                     break;
+  93:Core/Src/main.c ****                 case 4:
+  94:Core/Src/main.c ****                     GPIOD->ODR ^= GPIO_ODR_OD6;
+  95:Core/Src/main.c ****                     break;
+  96:Core/Src/main.c ****                 case 5:
+  97:Core/Src/main.c ****                     GPIOD->ODR ^= GPIO_ODR_OD7;
+  98:Core/Src/main.c ****                     break;
+  99:Core/Src/main.c ****             }
+ 100:Core/Src/main.c ****             lastTimes[i] = currentTime;
+ 266              		.loc 1 100 13 view .LVU74
+ 267              		.loc 1 100 26 is_stmt 0 view .LVU75
+ 268 0024 284A     		ldr	r2, .L36+12
+ 269 0026 42F82140 		str	r4, [r2, r1, lsl #2]
+ 270              	.L22:
+ 271              		.loc 1 100 26 view .LVU76
+ 272              	.LBE3:
+  64:Core/Src/main.c ****         uint32_t interval = 0;
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 8
+
+
+ 273              		.loc 1 64 33 is_stmt 1 discriminator 2 view .LVU77
+ 274 002a 0133     		adds	r3, r3, #1
+ 275              	.LVL9:
+  64:Core/Src/main.c ****         uint32_t interval = 0;
+ 276              		.loc 1 64 33 is_stmt 0 discriminator 2 view .LVU78
+ 277 002c DBB2     		uxtb	r3, r3
+ 278              	.LVL10:
+ 279              	.L18:
+  64:Core/Src/main.c ****         uint32_t interval = 0;
+ 280              		.loc 1 64 27 is_stmt 1 discriminator 1 view .LVU79
+ 281 002e 052B     		cmp	r3, #5
+ 282 0030 40D8     		bhi	.L35
+ 283              	.LBB4:
+  65:Core/Src/main.c ****         switch (blinkFrequencies[i]) {
+ 284              		.loc 1 65 9 view .LVU80
+ 285              	.LVL11:
+  66:Core/Src/main.c ****             case 0:
+ 286              		.loc 1 66 9 view .LVU81
+  66:Core/Src/main.c ****             case 0:
+ 287              		.loc 1 66 33 is_stmt 0 view .LVU82
+ 288 0032 1946     		mov	r1, r3
+ 289 0034 254A     		ldr	r2, .L36+16
+ 290 0036 D25C     		ldrb	r2, [r2, r3]	@ zero_extendqisi2
+ 291 0038 D2B2     		uxtb	r2, r2
+  66:Core/Src/main.c ****             case 0:
+ 292              		.loc 1 66 9 view .LVU83
+ 293 003a 012A     		cmp	r2, #1
+ 294 003c E5D0     		beq	.L19
+ 295 003e 022A     		cmp	r2, #2
+ 296 0040 E6D0     		beq	.L20
+ 297 0042 002A     		cmp	r2, #0
+ 298 0044 E7D1     		bne	.L32
+  68:Core/Src/main.c ****                 break;
+ 299              		.loc 1 68 17 is_stmt 1 view .LVU84
+  68:Core/Src/main.c ****                 break;
+ 300              		.loc 1 68 33 is_stmt 0 view .LVU85
+ 301 0046 1E4A     		ldr	r2, .L36+4
+ 302 0048 1068     		ldr	r0, [r2]
+ 303              	.LVL12:
+  69:Core/Src/main.c ****             case 1:
+ 304              		.loc 1 69 17 is_stmt 1 view .LVU86
+ 305              	.L21:
+  78:Core/Src/main.c ****             // Мерцание текущего светодиода
+ 306              		.loc 1 78 9 view .LVU87
+  78:Core/Src/main.c ****             // Мерцание текущего светодиода
+ 307              		.loc 1 78 36 is_stmt 0 view .LVU88
+ 308 004a 1F4A     		ldr	r2, .L36+12
+ 309 004c 52F82120 		ldr	r2, [r2, r1, lsl #2]
+  78:Core/Src/main.c ****             // Мерцание текущего светодиода
+ 310              		.loc 1 78 25 view .LVU89
+ 311 0050 A21A     		subs	r2, r4, r2
+  78:Core/Src/main.c ****             // Мерцание текущего светодиода
+ 312              		.loc 1 78 12 view .LVU90
+ 313 0052 8242     		cmp	r2, r0
+ 314 0054 E9D3     		bcc	.L22
+  80:Core/Src/main.c ****                 case 0:
+ 315              		.loc 1 80 13 is_stmt 1 view .LVU91
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 9
+
+
+ 316 0056 052B     		cmp	r3, #5
+ 317 0058 E4D8     		bhi	.L23
+ 318 005a 01A2     		adr	r2, .L25
+ 319 005c 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 320              		.p2align 2
+ 321              	.L25:
+ 322 0060 1B000000 		.word	.L30+1
+ 323 0064 79000000 		.word	.L29+1
+ 324 0068 85000000 		.word	.L28+1
+ 325 006c 91000000 		.word	.L27+1
+ 326 0070 9D000000 		.word	.L26+1
+ 327 0074 A9000000 		.word	.L24+1
+ 328              		.p2align 1
+ 329              	.L29:
+  85:Core/Src/main.c ****                     break;
+ 330              		.loc 1 85 21 view .LVU92
+  85:Core/Src/main.c ****                     break;
+ 331              		.loc 1 85 26 is_stmt 0 view .LVU93
+ 332 0078 1248     		ldr	r0, .L36+8
+ 333              	.LVL13:
+  85:Core/Src/main.c ****                     break;
+ 334              		.loc 1 85 26 view .LVU94
+ 335 007a 4269     		ldr	r2, [r0, #20]
+  85:Core/Src/main.c ****                     break;
+ 336              		.loc 1 85 32 view .LVU95
+ 337 007c 82F08002 		eor	r2, r2, #128
+ 338 0080 4261     		str	r2, [r0, #20]
+  86:Core/Src/main.c ****                 case 2:
+ 339              		.loc 1 86 21 is_stmt 1 view .LVU96
+ 340 0082 CFE7     		b	.L23
+ 341              	.LVL14:
+ 342              	.L28:
+  88:Core/Src/main.c ****                     break;
+ 343              		.loc 1 88 21 view .LVU97
+  88:Core/Src/main.c ****                     break;
+ 344              		.loc 1 88 26 is_stmt 0 view .LVU98
+ 345 0084 0F48     		ldr	r0, .L36+8
+ 346              	.LVL15:
+  88:Core/Src/main.c ****                     break;
+ 347              		.loc 1 88 26 view .LVU99
+ 348 0086 4269     		ldr	r2, [r0, #20]
+  88:Core/Src/main.c ****                     break;
+ 349              		.loc 1 88 32 view .LVU100
+ 350 0088 82F48042 		eor	r2, r2, #16384
+ 351 008c 4261     		str	r2, [r0, #20]
+  89:Core/Src/main.c ****                 case 3:
+ 352              		.loc 1 89 21 is_stmt 1 view .LVU101
+ 353 008e C9E7     		b	.L23
+ 354              	.LVL16:
+ 355              	.L27:
+  91:Core/Src/main.c ****                     break;
+ 356              		.loc 1 91 21 view .LVU102
+  91:Core/Src/main.c ****                     break;
+ 357              		.loc 1 91 26 is_stmt 0 view .LVU103
+ 358 0090 0C48     		ldr	r0, .L36+8
+ 359              	.LVL17:
+  91:Core/Src/main.c ****                     break;
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 10
+
+
+ 360              		.loc 1 91 26 view .LVU104
+ 361 0092 4269     		ldr	r2, [r0, #20]
+  91:Core/Src/main.c ****                     break;
+ 362              		.loc 1 91 32 view .LVU105
+ 363 0094 82F40042 		eor	r2, r2, #32768
+ 364 0098 4261     		str	r2, [r0, #20]
+  92:Core/Src/main.c ****                 case 4:
+ 365              		.loc 1 92 21 is_stmt 1 view .LVU106
+ 366 009a C3E7     		b	.L23
+ 367              	.LVL18:
+ 368              	.L26:
+  94:Core/Src/main.c ****                     break;
+ 369              		.loc 1 94 21 view .LVU107
+  94:Core/Src/main.c ****                     break;
+ 370              		.loc 1 94 26 is_stmt 0 view .LVU108
+ 371 009c 0C48     		ldr	r0, .L36+20
+ 372              	.LVL19:
+  94:Core/Src/main.c ****                     break;
+ 373              		.loc 1 94 26 view .LVU109
+ 374 009e 4269     		ldr	r2, [r0, #20]
+  94:Core/Src/main.c ****                     break;
+ 375              		.loc 1 94 32 view .LVU110
+ 376 00a0 82F04002 		eor	r2, r2, #64
+ 377 00a4 4261     		str	r2, [r0, #20]
+  95:Core/Src/main.c ****                 case 5:
+ 378              		.loc 1 95 21 is_stmt 1 view .LVU111
+ 379 00a6 BDE7     		b	.L23
+ 380              	.LVL20:
+ 381              	.L24:
+  97:Core/Src/main.c ****                     break;
+ 382              		.loc 1 97 21 view .LVU112
+  97:Core/Src/main.c ****                     break;
+ 383              		.loc 1 97 26 is_stmt 0 view .LVU113
+ 384 00a8 0948     		ldr	r0, .L36+20
+ 385              	.LVL21:
+  97:Core/Src/main.c ****                     break;
+ 386              		.loc 1 97 26 view .LVU114
+ 387 00aa 4269     		ldr	r2, [r0, #20]
+  97:Core/Src/main.c ****                     break;
+ 388              		.loc 1 97 32 view .LVU115
+ 389 00ac 82F08002 		eor	r2, r2, #128
+ 390 00b0 4261     		str	r2, [r0, #20]
+  98:Core/Src/main.c ****             }
+ 391              		.loc 1 98 21 is_stmt 1 view .LVU116
+ 392 00b2 B7E7     		b	.L23
+ 393              	.LVL22:
+ 394              	.L35:
+  98:Core/Src/main.c ****             }
+ 395              		.loc 1 98 21 is_stmt 0 view .LVU117
+ 396              	.LBE4:
+ 397              	.LBE2:
+ 101:Core/Src/main.c ****         }
+ 102:Core/Src/main.c ****     }
+ 103:Core/Src/main.c **** }
+ 398              		.loc 1 103 1 view .LVU118
+ 399 00b4 5DF8044B 		ldr	r4, [sp], #4
+ 400              	.LCFI1:
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 11
+
+
+ 401              		.cfi_restore 4
+ 402              		.cfi_def_cfa_offset 0
+ 403              	.LVL23:
+ 404              		.loc 1 103 1 view .LVU119
+ 405 00b8 7047     		bx	lr
+ 406              	.L37:
+ 407 00ba 00BF     		.align	2
+ 408              	.L36:
+ 409 00bc 00000000 		.word	initTime
+ 410 00c0 00000000 		.word	freq2
+ 411 00c4 00040240 		.word	1073873920
+ 412 00c8 00000000 		.word	lastTimes.0
+ 413 00cc 00000000 		.word	blinkFrequencies
+ 414 00d0 000C0240 		.word	1073875968
+ 415              		.cfi_endproc
+ 416              	.LFE131:
+ 418              		.section	.text.main,"ax",%progbits
+ 419              		.align	1
+ 420              		.global	main
+ 421              		.syntax unified
+ 422              		.thumb
+ 423              		.thumb_func
+ 425              	main:
+ 426              	.LFB132:
+ 104:Core/Src/main.c **** 
+ 105:Core/Src/main.c **** int main(void)
+ 106:Core/Src/main.c **** {
+ 427              		.loc 1 106 1 is_stmt 1 view -0
+ 428              		.cfi_startproc
+ 429              		@ Volatile: function does not return.
+ 430              		@ args = 0, pretend = 0, frame = 0
+ 431              		@ frame_needed = 0, uses_anonymous_args = 0
+ 432 0000 08B5     		push	{r3, lr}
+ 433              	.LCFI2:
+ 434              		.cfi_def_cfa_offset 8
+ 435              		.cfi_offset 3, -8
+ 436              		.cfi_offset 14, -4
+ 107:Core/Src/main.c **** 
+ 108:Core/Src/main.c ****     RCC_Init();
+ 437              		.loc 1 108 5 view .LVU121
+ 438 0002 FFF7FEFF 		bl	RCC_Init
+ 439              	.LVL24:
+ 109:Core/Src/main.c ****     ITR_init();
+ 440              		.loc 1 109 5 view .LVU122
+ 441 0006 FFF7FEFF 		bl	ITR_init
+ 442              	.LVL25:
+ 110:Core/Src/main.c ****     SysTick_Init();
+ 443              		.loc 1 110 5 view .LVU123
+ 444 000a FFF7FEFF 		bl	SysTick_Init
+ 445              	.LVL26:
+ 111:Core/Src/main.c ****     GPIO_Ini();
+ 446              		.loc 1 111 5 view .LVU124
+ 447 000e FFF7FEFF 		bl	GPIO_Ini
+ 448              	.LVL27:
+ 112:Core/Src/main.c ****     interval = 0;
+ 449              		.loc 1 112 5 view .LVU125
+ 450              		.loc 1 112 14 is_stmt 0 view .LVU126
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 12
+
+
+ 451 0012 064B     		ldr	r3, .L44
+ 452 0014 0022     		movs	r2, #0
+ 453 0016 1A60     		str	r2, [r3]
+ 454 0018 01E0     		b	.L39
+ 455              	.L43:
+ 113:Core/Src/main.c ****     while (1)
+ 114:Core/Src/main.c ****     {
+ 115:Core/Src/main.c ****          if (mode == 0) {
+ 116:Core/Src/main.c ****             mode1_control();
+ 456              		.loc 1 116 13 is_stmt 1 view .LVU127
+ 457 001a FFF7FEFF 		bl	mode1_control
+ 458              	.LVL28:
+ 459              	.L39:
+ 113:Core/Src/main.c ****     while (1)
+ 460              		.loc 1 113 5 view .LVU128
+ 115:Core/Src/main.c ****             mode1_control();
+ 461              		.loc 1 115 10 view .LVU129
+ 115:Core/Src/main.c ****             mode1_control();
+ 462              		.loc 1 115 19 is_stmt 0 view .LVU130
+ 463 001e 044B     		ldr	r3, .L44+4
+ 464 0020 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 115:Core/Src/main.c ****             mode1_control();
+ 465              		.loc 1 115 13 view .LVU131
+ 466 0022 002B     		cmp	r3, #0
+ 467 0024 F9D0     		beq	.L43
+ 117:Core/Src/main.c ****         } else {
+ 118:Core/Src/main.c ****             mode2_control();
+ 468              		.loc 1 118 13 is_stmt 1 view .LVU132
+ 469 0026 FFF7FEFF 		bl	mode2_control
+ 470              	.LVL29:
+ 471 002a F8E7     		b	.L39
+ 472              	.L45:
+ 473              		.align	2
+ 474              	.L44:
+ 475 002c 00000000 		.word	interval
+ 476 0030 00000000 		.word	mode
+ 477              		.cfi_endproc
+ 478              	.LFE132:
+ 480              		.section	.bss.lastTimes.0,"aw",%nobits
+ 481              		.align	2
+ 484              	lastTimes.0:
+ 485 0000 00000000 		.space	24
+ 485      00000000 
+ 485      00000000 
+ 485      00000000 
+ 485      00000000 
+ 486              		.section	.bss.ledIndex.1,"aw",%nobits
+ 489              	ledIndex.1:
+ 490 0000 00       		.space	1
+ 491              		.section	.bss.lastTime.2,"aw",%nobits
+ 492              		.align	2
+ 495              	lastTime.2:
+ 496 0000 00000000 		.space	4
+ 497              		.global	CountMode
+ 498              		.section	.bss.CountMode,"aw",%nobits
+ 499              		.align	2
+ 502              	CountMode:
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 13
+
+
+ 503 0000 00000000 		.space	24
+ 503      00000000 
+ 503      00000000 
+ 503      00000000 
+ 503      00000000 
+ 504              		.global	freq2
+ 505              		.section	.data.freq2,"aw"
+ 506              		.align	2
+ 509              	freq2:
+ 510 0000 DC050000 		.word	1500
+ 511 0004 84030000 		.word	900
+ 512 0008 C8000000 		.word	200
+ 513              		.global	freq1
+ 514              		.section	.data.freq1,"aw"
+ 515              		.align	2
+ 518              	freq1:
+ 519 0000 60090000 		.word	2400
+ 520 0004 14050000 		.word	1300
+ 521 0008 58020000 		.word	600
+ 522              		.global	interval
+ 523              		.section	.bss.interval,"aw",%nobits
+ 524              		.align	2
+ 527              	interval:
+ 528 0000 00000000 		.space	4
+ 529              		.global	blinkFrequencies
+ 530              		.section	.bss.blinkFrequencies,"aw",%nobits
+ 531              		.align	2
+ 534              	blinkFrequencies:
+ 535 0000 00000000 		.space	6
+ 535      0000
+ 536              		.global	blinkFrequency
+ 537              		.section	.bss.blinkFrequency,"aw",%nobits
+ 540              	blinkFrequency:
+ 541 0000 00       		.space	1
+ 542              		.global	currentLED
+ 543              		.section	.bss.currentLED,"aw",%nobits
+ 546              	currentLED:
+ 547 0000 00       		.space	1
+ 548              		.global	mode
+ 549              		.section	.bss.mode,"aw",%nobits
+ 552              	mode:
+ 553 0000 00       		.space	1
+ 554              		.text
+ 555              	.Letext0:
+ 556              		.file 2 "D:/Microcontroller/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_defa
+ 557              		.file 3 "D:/Microcontroller/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h
+ 558              		.file 4 "C:/Users/dedla/Documents/Labstm/Laboratory_Practice/CMSIS/Devices/Inc/stm32f429xx.h"
+ 559              		.file 5 "Core/Src/../Inc/main.h"
+ 560              		.file 6 "Core/Src/../Inc/init.h"
+ARM GAS  C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s 			page 14
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:21     .text.mode1_control:00000000 $t
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:27     .text.mode1_control:00000000 mode1_control
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:77     .text.mode1_control:00000036 $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:83     .text.mode1_control:0000003c $t
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:186    .text.mode1_control:000000b0 $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:540    .bss.blinkFrequency:00000000 blinkFrequency
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:518    .data.freq1:00000000 freq1
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:527    .bss.interval:00000000 interval
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:495    .bss.lastTime.2:00000000 lastTime.2
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:489    .bss.ledIndex.1:00000000 ledIndex.1
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:199    .text.mode2_control:00000000 $t
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:205    .text.mode2_control:00000000 mode2_control
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:322    .text.mode2_control:00000060 $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:328    .text.mode2_control:00000078 $t
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:409    .text.mode2_control:000000bc $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:509    .data.freq2:00000000 freq2
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:484    .bss.lastTimes.0:00000000 lastTimes.0
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:534    .bss.blinkFrequencies:00000000 blinkFrequencies
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:419    .text.main:00000000 $t
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:425    .text.main:00000000 main
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:475    .text.main:0000002c $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:552    .bss.mode:00000000 mode
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:481    .bss.lastTimes.0:00000000 $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:490    .bss.ledIndex.1:00000000 $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:492    .bss.lastTime.2:00000000 $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:502    .bss.CountMode:00000000 CountMode
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:499    .bss.CountMode:00000000 $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:506    .data.freq2:00000000 $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:515    .data.freq1:00000000 $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:524    .bss.interval:00000000 $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:531    .bss.blinkFrequencies:00000000 $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:541    .bss.blinkFrequency:00000000 $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:546    .bss.currentLED:00000000 currentLED
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:547    .bss.currentLED:00000000 $d
+C:\Users\dedla\AppData\Local\Temp\ccW0ZtHU.s:553    .bss.mode:00000000 $d
+
+UNDEFINED SYMBOLS
+initTime
+RCC_Init
+ITR_init
+SysTick_Init
+GPIO_Ini

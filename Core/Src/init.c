@@ -1,6 +1,5 @@
 #include "init.h"
 
-#include "init.h"
 
 void GPIO_Ini(void){
 
@@ -20,9 +19,6 @@ void GPIO_Ini(void){
     SET_BIT(GPIOB->MODER, GPIO_MODER_MODE14_0); 
     SET_BIT(GPIOB->MODER, GPIO_MODER_MODE15_0); 
     SET_BIT(GPIOD->MODER, GPIO_MODER_MODE6_0); 
-    SET_BIT(GPIOD->MODER, GPIO_MODER_MODE7_0); 
-
-    SET_BIT(GPIOD->MODER, GPIO_MODER_MODE6_0);  
     SET_BIT(GPIOD->MODER, GPIO_MODER_MODE7_0); 
 
     CLEAR_BIT(GPIOB->OTYPER, GPIO_OTYPER_OT_7 | GPIO_OTYPER_OT_0 | GPIO_OTYPER_OT_14 | GPIO_OTYPER_OT_4 | GPIO_OTYPER_OT_15); 
@@ -75,21 +71,30 @@ void RCC_Init(void)
 
 void ITR_init(void)
 {
+    // Включение тактирования для SYSCFG
     SET_BIT(RCC->APB2ENR, RCC_APB2ENR_SYSCFGEN);
+    
 
-    MODIFY_REG(SYSCFG->EXTICR[1], SYSCFG_EXTICR2_EXTI4_Msk, SYSCFG_EXTICR2_EXTI4_PB);
-    MODIFY_REG(SYSCFG->EXTICR[1], SYSCFG_EXTICR2_EXTI5_Msk, SYSCFG_EXTICR2_EXTI5_PB);
-    MODIFY_REG(SYSCFG->EXTICR[1], SYSCFG_EXTICR2_EXTI6_Msk, SYSCFG_EXTICR2_EXTI6_PB);
+    // Настройка EXTI4 на порт B
+    MODIFY_REG(SYSCFG->EXTICR[1], SYSCFG_EXTICR2_EXTI5_Msk, SYSCFG_EXTICR2_EXTI5_PA);
+    // Настройка EXTI5 на порт B
+    MODIFY_REG(SYSCFG->EXTICR[1], SYSCFG_EXTICR2_EXTI6_Msk, SYSCFG_EXTICR2_EXTI6_PA);
+    // Настройка EXTI6 на порт B
+    MODIFY_REG(SYSCFG->EXTICR[1], SYSCFG_EXTICR2_EXTI7_Msk, SYSCFG_EXTICR2_EXTI7_PA);
 
-    SET_BIT(EXTI->IMR, EXTI_IMR_MR4 | EXTI_IMR_MR5 | EXTI_IMR_MR6);
+    // Разрешение прерываний для EXTI4, EXTI5 и EXTI6
+    SET_BIT(EXTI->IMR, EXTI_IMR_MR5 | EXTI_IMR_MR6 | EXTI_IMR_MR7);
 
-    SET_BIT(EXTI->RTSR, EXTI_RTSR_TR4 | EXTI_RTSR_TR5 | EXTI_RTSR_TR6);
-    SET_BIT(EXTI->FTSR, EXTI_FTSR_TR4 | EXTI_FTSR_TR5 | EXTI_FTSR_TR6);
-
+    // Настройка триггера на нисходящий фронт для EXTI4, EXTI5 и EXTI6
+     // Удаление настройки на восходящий фронт
+    CLEAR_BIT(EXTI->FTSR, EXTI_FTSR_TR5 | EXTI_RTSR_TR6 | EXTI_FTSR_TR7);   // Настройка на нисходящий фронт
+    SET_BIT(EXTI->RTSR, EXTI_RTSR_TR5 | EXTI_RTSR_TR6 | EXTI_RTSR_TR7);
+    // Установка приоритета прерываний
     NVIC_SetPriority(EXTI4_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
     NVIC_SetPriority(EXTI9_5_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
 
-    NVIC_EnableIRQ(EXTI4_IRQn);
+    // Включение прерываний в NVIC
+
     NVIC_EnableIRQ(EXTI9_5_IRQn);
 }
 

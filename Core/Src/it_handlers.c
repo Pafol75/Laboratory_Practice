@@ -2,39 +2,55 @@
 #include "main.h"
 #include "init.h"
 
-volatile uint8_t flag1, flag2, flag3, flag4, flag5, flag6, LedState;
-volatile uint8_t flag1ON, flag2ON, flag3ON, flag4ON, flag5ON, flag6ON;
-volatile uint8_t BtnCount1, BtnCount2, BtnCount3;
-volatile uint16_t ledTime1, ledTime2, ledTime3, ledTime4, ledTime5, ledTime6;
-
-volatile uint16_t GlobalTickCount;
-volatile uint16_t dtime, cycleTime;
-volatile uint8_t Button1Type;
-
+volatile uint8_t Button1Type = 0, Button2Type = 0, Button3Type = 0;
+volatile uint32_t initTime = 0, pastTime1 = 0, pastTime2 = 0, pastTime3 = 0;
 
 void SysTick_Handler(void)
 {
-
-}
-void EXTI4_IRQHandler(void)
-{
-    if (EXTI->PR & EXTI_PR_PR4) {
-        EXTI->PR = EXTI_PR_PR4;
-        Button1Type != Button1Type;
-    }
+    initTime++;
 }
 
 void EXTI9_5_IRQHandler(void)
 {
     if (EXTI->PR & EXTI_PR_PR5) {
-        EXTI->PR = EXTI_PR_PR5;
+        SET_BIT(EXTI->PR, EXTI_PR_PR5);
+
+        if (initTime - pastTime1 > 200) {
+            Button1Type++;
+            if (Button1Type >= 3) {
+                Button1Type = 0;
+            }
+            mode = Button1Type;
+        }
+        pastTime1 = initTime;
     }
 
     if (EXTI->PR & EXTI_PR_PR6) {
-        EXTI->PR = EXTI_PR_PR6;
+        SET_BIT(EXTI->PR, EXTI_PR_PR6);
+        if (initTime - pastTime2 > 200) {
+            Button2Type++;
+            if (Button2Type >= 3) {
+                Button2Type = 0;
+            }
+            if (mode == 0) {
+                blinkFrequency = Button2Type;
+            } else {
+                blinkFrequencies[currentLED] = Button2Type;
+            }
+        }
+        pastTime2 = initTime;
     }
-}
-void User_Delay(uint32_t delay)
-{
 
+    if (EXTI->PR & EXTI_PR_PR7) {
+        SET_BIT(EXTI->PR, EXTI_PR_PR7);
+
+        if (initTime - pastTime3 > 200) {
+            Button3Type++;
+            if (Button3Type >= 6) {
+                Button3Type = 0;
+            }
+            currentLED = Button3Type;
+        }
+        pastTime3 = initTime;
+    }
 }
